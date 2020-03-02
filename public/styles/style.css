@@ -1,0 +1,193 @@
+header, section, footer, nav, article, figure, figcaption {
+    display: block;
+}
+
+body {
+    width: 960px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* text-align: center; */
+    background-color: #78A4BF;
+    color: #1B2F32;
+    margin: auto;
+    
+}
+
+header {
+    height: 120px; 
+}
+
+nav {
+    width: 1000px;
+    background-color: #324873; 
+    height: 60px;
+    margin: 0px;
+}
+
+nav ul{
+    margin: 0px;
+    padding: 10px 0px 10px 30px;
+}
+
+.siteNavigation li {
+  margin-bottom: 50px; 
+}
+
+nav .siteNavigation li{
+    display: inline;
+    margin-right: 50px;
+    
+}
+
+nav .mediaLinks li{
+    display: inline;
+    margin-right: 20px;
+    text-decoration: none;
+    float: right;
+}
+
+nav li a{
+    color: #99BFB4;
+}
+
+nav li a:hover, nav li {
+    color: whitesmoke;
+}
+
+nav .mediaLinks li img{
+    width: 24px;
+    height: 24px;
+}
+
+h1 {
+    font-size: 40px;
+    text-align: center;
+}
+
+h2, h3 {
+    text-align: center;
+}
+
+.video {
+  text-align: center;
+}
+
+.circular--landscape {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 35px;
+    margin-left: 60px;
+    /* float: left; */
+  }
+
+  .circular--landscape img {
+    width: auto;
+    height: 100%;
+    margin-left: -50px;
+    
+  }
+
+  .herbs {
+      /* clear: both;    */
+    /* background-color: lightgreen; */
+    width: 550px; 
+    margin-top: 30px;
+    margin-right: 60px;
+    float: right;
+  }
+
+  /* div {
+      background-color: aqua;
+      margin-bottom: 50px;
+  } */
+
+#inflammatoryFoods {
+    display: inline; 
+}
+  .circular--landscape2 {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 20px;
+    margin-left: 0px;
+    /* float: left; */
+  }
+
+  .circular--landscape2 img {
+    width: auto;
+    height: 100%;
+    margin-left: -50px;
+    
+  }
+
+  .circular--landscape3 {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 20px;
+    margin-left: 380px;
+    text-align: center;
+    /* float: left; */
+  }
+
+  .circular--landscape3 img {
+    width: auto;
+    height: 100%;
+    margin-left: -58px;
+    text-align: center;
+    
+  }
+
+  #suePic {
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+    margin-bottom: 200px;
+    float: right;
+}
+
+    /* footer div{
+    display: inline-block; 
+    height: 200px; 
+  } */
+  
+  footer{
+      width: 1000px;
+      height: 200px;
+      margin: 15px;
+      background-color: #324873; 
+      color: #99BFB4;
+      margin-left: 20px;
+  }
+
+  #aboutSue{
+    display: block;
+    width: 800px; 
+    margin-top: 20px; 
+    margin-left: 20px; 
+  }
+
+
+
+  /* #footerSue{
+    height: 200px; 
+    margin-left: 20px;
+    margin-top: 20px; 
+  } */
+
+  /* #footerList, #footerSue, .footerItem{
+    text-decoration: none;
+  }
+  #footerList:last-child {
+    float: right;
+    margin-bottom: 200px;  
+  } */
