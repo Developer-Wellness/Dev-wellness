@@ -39,13 +39,14 @@ Out:
 
 ## Data Flow
 1. User navigates to landing page.
+1. On landing page, modal prompts users to create profile or login.
 1. Landing page loads application introduction: paragraphs and videos; navigation bar clearly visible to include hamburger menu of available pages.
 1. Upon hamburger menu selection, users are directed to preferred page (Health and wellness, Events, User Data, About Us).
 1. On Health and wellness page, navigation bar allows for directing users to its three sections: Herbal, Nutrition, Mindfulness.
 1. In Events page, superagent calls RunSignUp API and JQuery renders the results into listings.
 1. After Events page list loads, users can select a favorite event that is then saved into database tables and table join: users, events, and user/events.
-1. User Data page loads with info from database.
-1. About Us page contains software developer information and links to our external portfolios.
+1. My stuff page loads with info from database and allows for deleting events.
+1. About Us page contains software developer information in carousel and links to our external portfolios.
 
 ## Non-Functional Requirements
 1. User authentication, so that, upon login, users can CRUD their favorites in-and-out of database.
