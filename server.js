@@ -32,6 +32,10 @@ function renderHomePage(request, response){
 }
 
 
+function Error(error, response){
+  console.error(error);
+  return response.status(500).send('ya done f**kd up A A Ron.');
+}
 
 client.connect()
 .then(()=>{
