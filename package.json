@@ -1,0 +1,27 @@
+{
+  "name": "dev-wellness",
+  "version": "1.0.0",
+  "description": "### Trello Board:  https://trello.com/b/VaQVAFhC/301-wellness-project",
+  "main": "database.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^7.18.2",
+    "superagent": "^5.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Developer-Wellness/Dev-wellness.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Developer-Wellness/Dev-wellness/issues"
+  },
+  "homepage": "https://github.com/Developer-Wellness/Dev-wellness#readme"
+}
