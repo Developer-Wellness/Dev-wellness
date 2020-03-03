@@ -102,12 +102,14 @@ function getRaces(request, response){
     });
 }
 
+
 function Races(obj){
   this.name = obj.race.name;
   this.next_date = obj.race.next_date;
   this.location = obj.race.address.city || 'undefined';
   this.external_race_url = obj.race.external_race_url;
-  this.logo_url = obj.race.logo_url;    
+  this.logo_url = obj.race.logo_url;
+  this.description = obj.race.description;    
 };
 
 client.connect()
