@@ -1,0 +1,77 @@
+<!DOCTYPE <!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Developer Wellness</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav>
+
+    <ul class="mediaLinks">
+      <li><a href="mailto:suemachtley@gmail.com"><img src="images/mail-icon.png"></a> </li>
+      <li><a href="https://github.com/suetarazi"><img src="images/GitHub-Mark-64px.png" /></a></li>
+      <li><a href="https://www.linkedin.com/in/sue-tarazi-b792b520/"><img
+            src="images/linkedin-logo-png-transparent-background-4.png" /></a></li>
+    </ul>
+
+    <ul class="siteNavigation">
+      <li><a href="index.html" class="current">Home</a></li>
+      <li><a href="herbs.html">Herbs</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="mindfulness.html">Mindfulness</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Events</h1>
+  </header>
+  <main>
+    <section>
+      <fieldset>
+        <form action="/search" method="get"/><!--sending user input as /search query-->
+          <label>
+            <h3>Input City Location</h3>
+          </label>
+          <input type="text" id="city" name="location">
+          <button type="submit"></button>
+        </form>
+      </fieldset>
+    </section>
+    <section>
+      <%= for(let x = 0; x < results.length; x++) { %>
+      <article>
+          <img src="<%= obj.urlImage %>" alt="<%= obj.name %>">
+          <p><%= obj.descrition %></p>
+        </article>
+        <%= } %>
+      </section>
+      
+      <script src="app.js" async defer></script>
+  </main>
+
+  <footer>
+    <section id="footerSue">
+      <div id="aboutSue">
+        <h3>Sue Tarazi, PT, DPT, OCS, MTC</h3>
+        <p>Sue Tarazi is a Physical Therapist who is also an Orthopedics and Manual Specialist in Seattle, WA<br>
+          She has owned her own private practice for over 9 years and has served as faculty at an Acupuncture
+          school.<br>
+          Recently, Sue made a career transition to Software Development and is thrilled to meld her new knowledge with
+          her past experience.</p>
+      </div>
+      <div class="circular--landscape" id="suePic">
+        <img src="images/DSC09160.jpg" />
+      </div>
+    </section>
+    </div>
+  </footer>
+</body>
+<script src="app.js" async defer></script>
+
+</html>
