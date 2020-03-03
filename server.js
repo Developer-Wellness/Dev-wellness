@@ -74,8 +74,8 @@ function Error(error, response){
 
 function getRaces(request, response){
   let city = request.query.location;
-  console.log(request.query, '💉')
   let url = `https://runsignup.com/Rest/races?format=json&results_per_page=12&city=${city}`;
+
   let sqlSearch = 'SELECT * FROM events WHERE search_query=$1;';
   let safeValues = [city];
   
@@ -104,14 +104,12 @@ function getRaces(request, response){
 
 
 function Races(obj){
-  this.name = obj.name;
-  this.next_date = obj.next_date;
-  this.location = obj.address.city;
-  this.external_race_url = obj.external_race_url;
-  this.logo_url = obj.logo_url;    
+  this.name = obj.race.name;
+  this.next_date = obj.race.next_date;
+  this.location = obj.race.address.city || 'undefined';
+  this.external_race_url = obj.race.external_race_url;
+  this.logo_url = obj.race.logo_url;    
 };
-
-// getRaces()
 
 client.connect()
   .then(()=>{
@@ -156,3 +154,4 @@ client.connect()
 //                 "logo_url": "https://d368g9lw5ileu7.cloudfront.net/races/race48851-logo.bDu4Lw.png",
 //                 "real_time_notifications_enabled": "F"
 //             }
+
