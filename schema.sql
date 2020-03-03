@@ -12,7 +12,7 @@ INSERT INTO users (name, password) VALUES ('Sean', '12345');
 CREATE TABLE events(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    description VARCHAR(255),
+    description TEXT,
     location VARCHAR(255),
     date VARCHAR(255),
     logo_url VARCHAR(255),
