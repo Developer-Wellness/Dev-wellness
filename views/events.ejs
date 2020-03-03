@@ -11,7 +11,9 @@
 </head>
 
 <body>
-  <nav>
+  <%- include('./partials/nav') %>
+
+  <!-- <nav>
 
     <ul class="mediaLinks">
       <li><a href="mailto:suemachtley@gmail.com"><img src="images/mail-icon.png"></a> </li>
@@ -26,7 +28,7 @@
       <li><a href="nutrition.html">Nutrition</a></li>
       <li><a href="mindfulness.html">Mindfulness</a></li>
     </ul>
-  </nav>
+  </nav> -->
 
   <header>
     <h1>Events</h1>
@@ -43,13 +45,18 @@
         </form>
       </fieldset>
     </section>
+
     <section>
-      <%= for(let x = 0; x < results.length; x++) { %>
+      <% resultsArray.forEach(element => { %>
       <article>
-          <img src="<%= obj.urlImage %>" alt="<%= obj.name %>">
-          <p><%= obj.descrition %></p>
+          <img src="<%= element.logo_url %>" alt="<%= element.name %>">
+          <h6><%= element.name %></h6>
+          <p><%= element.description %></p>
+          <a action="/favorite:<%= element.uniqId %>"</a>
         </article>
-        <%= } %>
+
+        <% }); %>
+
       </section>
       
       <script src="app.js" async defer></script>
