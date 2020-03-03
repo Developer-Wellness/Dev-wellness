@@ -51,7 +51,7 @@
       <article>
           <img src="<%= element.logo_url %>" alt="<%= element.name %>">
           <h6><%= element.name %></h6>
-          <p><%= element.description %></p>
+          <p><%- element.description %></p>
           <a action="/favorite:<%= element.uniqId %>"</a>
         </article>
 
