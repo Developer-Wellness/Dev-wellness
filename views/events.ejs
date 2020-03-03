@@ -45,7 +45,17 @@
         </form>
       </fieldset>
     </section>
-   
+
+    <section>
+      <%= resultsArray.forEach(element => { { %>
+      <article>
+          <img src="<%= obj.urlImage %>" alt="<%= obj.name %>">
+          <h6><%= element.name %></h6>
+          <p><%= element.descrition %></p>
+          <a action="/favorite:<%= obj.uniqId %>"</a>
+        </article>
+        <%= } %>
+      </section>
       
       <script src="app.js" async defer></script>
   </main>
