@@ -45,16 +45,7 @@
         </form>
       </fieldset>
     </section>
-    <section>
-      <%= for(let x = 0; x < results.length; x++) { %>
-      <article>
-          <img src="<%= obj.urlImage %>" alt="<%= obj.name %>">
-          <h6><%= obj.name %></h6>
-          <p><%= obj.descrition %></p>
-          <a action="/favorite:<%= obj.uniqId %>"</a>
-        </article>
-        <%= } %>
-      </section>
+   
       
       <script src="app.js" async defer></script>
   </main>
