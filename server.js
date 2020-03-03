@@ -20,6 +20,10 @@ app.use(express.static('./public'));
 app.use(methodOveride('_method'));
 
 app.get('/', renderHomePage);
+app.get('/nutrition-and-wellness', renderNutritionAndWellness);
+app.get('/events', renderEvents);
+app.get('/mystuff', renderMystuff);
+app.get('/aboutUs', renderAboutus);
 
 const PORT = process.env.PORT || 3001;
 
@@ -31,11 +35,57 @@ function renderHomePage(request, response){
   
 }
 
+function renderNutritionAndWellness(request, response) {
+  console.log('trying to render nutrition and wellness');
+  response.render('./nutrition-and-wellness');
+}
+
+function renderEvents(request, response) {
+  console.log('trying to render events');
+  response.render('./events');
+}
+
+function renderMystuff(request, response) {
+  console.log('trying to render mystuff');
+  response.render('./mystuff');
+}
+
+function renderAboutus(request, response) {
+  console.log.apply('trying to render aboutUs');
+  response.render('./aboutUs');
+}
 
 function Error(error, response){
   console.error(error);
   return response.status(500).send('ya done f**kd up A A Ron.');
 }
+
+
+app.get('/search', getRaces);
+
+function getRaces(request, response){
+  let city = request.query.location;
+  console.log(request.query, '💉')
+  let url = `https://runsignup.com/Rest/races?format=json&results_per_page=12&city=${city}`;
+  superagent.get(url)
+  .then(results =>{
+    let racesResults = results.race;
+    let raceEvents = racesResults.map((obj) => (new Races(obj)))
+    response.send(raceEvents);
+    console.log(raceEvents, '💊');
+  })
+  
+}
+
+function Races(obj){
+  this.name = obj.name;
+  this.next_date = obj.next_date;
+  this.location = obj.address.city;
+  this.external_race_url = obj.external_race_url;
+  this.logo_url = obj.logo_url;    
+};
+
+// getRaces()
 
 client.connect()
 .then(()=>{
@@ -44,39 +94,14 @@ app.listen(PORT, () => {
 });
 });
 
-app.get('/search', getRaces);
-
-function getRaces(request, response){
-let city = request.query.location;
-console.log(request.query, '💉')
-let url = `https://runsignup.com/Rest/races?format=json&results_per_page=12&city=${city}`;
-    superagent.get(url)
-    .then(results =>{
-      let racesResults = results.race;
-    let raceEvents = racesResults.map((obj) => (new Races(obj)))
-    response.send(raceEvents);
-console.log(raceEvents, '💊');
-    })
-  
-}
-
-function Races(obj){
-    this.name = obj.name;
-    this.next_date = obj.next_date;
-    this.location = obj.address.city;
-    this.external_race_url = obj.external_race_url;
-    this.logo_url = obj.logo_url;    
-};
-
-getRaces()
 
 //  "races": [
-//         {
-//             "race": {
-//                 "race_id": 48851,
-//                 "name": "2020 Tenacious Ten",
-//                 "last_date": "04/20/2019",
-//                 "last_end_date": "04/20/2019",
+  //         {
+    //             "race": {
+      //                 "race_id": 48851,
+      //                 "name": "2020 Tenacious Ten",
+      //                 "last_date": "04/20/2019",
+      //                 "last_end_date": "04/20/2019",
 //                 "next_date": "04/11/2020",
 //                 "next_end_date": "04/11/2020",
 //                 "is_draft_race": "F",
