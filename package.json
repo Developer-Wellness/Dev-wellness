@@ -2,7 +2,7 @@
   "name": "dev-wellness",
   "version": "1.0.0",
   "description": "### Trello Board:  https://trello.com/b/VaQVAFhC/301-wellness-project",
-  "main": "database.js",
+  "main": "server.js",
   "dependencies": {
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
