@@ -48,7 +48,6 @@ function renderEvents(request, response) {
     .then(results =>{
       let eventResults = results.rows;
       let eventNumbers = eventResults.length;
-      console.log(bookNumber);
       response.render('./events', {resultsArray: eventResults, eventNumbers});
     })
     .catch(error =>{
@@ -78,30 +77,30 @@ function getRaces(request, response){
 
   let sqlSearch = 'SELECT * FROM events WHERE search_query=$1;';
   let safeValues = [city];
-  
+
   client.query(sqlSearch, safeValues)
-  .then(results => {
-    if (results.rowCount > 0) {
-      response.send(results.rows)
-      
-    }else{
-  superagent.get(url)
-    .then(results =>{
+    .then(results => {
+      if (results.rowCount > 0) {
+        response.send(results.rows)
 
-      let racesResults = results.race;
-      let raceEvents = racesResults.map((obj) => (new Races(obj)))
-      let { name, next_date, address.city, external_race_url, logo_url } = raceEvents;
-      let safeValues2 = [name, next_date, address.city, external_race_url, logo_url];
-      let SQL = "INSERT INTO events (name, next_date, address.city, external_race_url, logo_url) VALUES ($1, $2, $3, $4, $5) RETURNING *"
+      }else{
+        superagent.get(url)
+          .then(results =>{
 
-      client.query(SQL, safeValues2);
+            let racesResults = results.race;
+            let raceEvents = racesResults.map((obj) => (new Races(obj)))
+            let { name, next_date, location, external_race_url, logo_url } = raceEvents;
+            let safeValues2 = [name, next_date, location, external_race_url, logo_url, ];
+            let SQL = 'INSERT INTO events (name, description, location, date, logo_url, website) VALUES ($1, $2, $3, $4, $5) RETURNING *;';
 
-      response.send(raceEvents);
-      console.log(raceEvents, '💊');
-      })
-    }
-  }
+            client.query(SQL, safeValues2);
 
+            response.send(raceEvents);
+            console.log(raceEvents, '💊');
+          });
+      }
+    });
+}
 
 function Races(obj){
   this.name = obj.race.name;
