@@ -29,9 +29,25 @@ Out:
 1. Adding additional tables to database so user can keep track of more items they like
 1. Render search criteria from the API in calendar form
 1. Calculate the users BMI and chart it vs national average BMI
+1. Use weather API to change CSS particular to live weather data (ie. darktheme at midnight)
 
 ## Functional Requirements
+1. Users can create usernames and passwords.
+1. Calendar of Events will render up-and-coming events thru the RunSignUp API.
+1. Relative health and wellness data will appear on its proper page.
+1. Database with three tables; users, events, and user/events.
 
 ## Data Flow
+1. User navigates to landing page.
+1. On landing page, modal prompts users to create profile or login.
+1. Landing page loads application introduction: paragraphs and videos; navigation bar clearly visible to include hamburger menu of available pages.
+1. Upon hamburger menu selection, users are directed to preferred page (Health and wellness, Events, User Data, About Us).
+1. On Health and wellness page, navigation bar allows for directing users to its three sections: Herbal, Nutrition, Mindfulness.
+1. In Events page, superagent calls RunSignUp API and JQuery renders the results into listings.
+1. After Events page list loads, users can select a favorite event that is then saved into database tables and table join: users, events, and user/events.
+1. My stuff page loads with info from database and allows for deleting events.
+1. About Us page contains software developer information in carousel and links to our external portfolios.
 
 ## Non-Functional Requirements
+1. User authentication, so that, upon login, users can CRUD their favorites in-and-out of database.
+1. Events pages renders limited amount of calendar events (ie. next 30- 90 days).

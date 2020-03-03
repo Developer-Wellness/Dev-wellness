@@ -2,10 +2,12 @@
   "name": "dev-wellness",
   "version": "1.0.0",
   "description": "### Trello Board:  https://trello.com/b/VaQVAFhC/301-wellness-project",
-  "main": "database.js",
+  "main": "server.js",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "method-override": "^3.0.0",
     "pg": "^7.18.2",
     "superagent": "^5.2.2"
   },
