@@ -75,7 +75,7 @@ function getRaces(request, response){
   let city = request.query.location;
   let url = `https://runsignup.com/Rest/races?format=json&results_per_page=12&city=${city}`;
 
-  let sqlSearch = 'SELECT * FROM events WHERE search_query=$1;';
+  let sqlSearch = 'SELECT * FROM events WHERE name=$1;';
   let safeValues = [city];
 
   client.query(sqlSearch, safeValues)
@@ -87,7 +87,7 @@ function getRaces(request, response){
         superagent.get(url)
           .then(results =>{
 
-            let racesResults = results.race;
+            let racesResults = results.body.races;
             let raceEvents = racesResults.map((obj) => (new Races(obj)))
             let { name, next_date, location, external_race_url, logo_url } = raceEvents;
             let safeValues2 = [name, next_date, location, external_race_url, logo_url, ];
