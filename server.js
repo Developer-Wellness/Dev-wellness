@@ -48,7 +48,6 @@ function renderEvents(request, response) {
     .then(results =>{
       let eventResults = results.rows;
       let eventNumbers = eventResults.length;
-      console.log(bookNumber);
       response.render('./events', {resultsArray: eventResults, eventNumbers});
     })
     .catch(error =>{
@@ -90,9 +89,9 @@ function getRaces(request, response){
 
       let racesResults = results.race;
       let raceEvents = racesResults.map((obj) => (new Races(obj)))
-      let { name, next_date, address.city, external_race_url, logo_url } = raceEvents;
-      let safeValues2 = [name, next_date, address.city, external_race_url, logo_url];
-      let SQL = "INSERT INTO events (name, next_date, address.city, external_race_url, logo_url) VALUES ($1, $2, $3, $4, $5) RETURNING *"
+      let { name, next_date, location, external_race_url, logo_url } = raceEvents;
+      let safeValues2 = [name, next_date, location, external_race_url, logo_url];
+      let SQL = "INSERT INTO events (name, next_date, location, external_race_url, logo_url) VALUES ($1, $2, $3, $4, $5) RETURNING *"
 
       client.query(SQL, safeValues2);
 
@@ -100,15 +99,16 @@ function getRaces(request, response){
       console.log(raceEvents, '💊');
       })
     }
-  }
-
+  })
+};
 
 function Races(obj){
   this.name = obj.race.name;
   this.next_date = obj.race.next_date;
   this.location = obj.race.address.city || 'undefined';
   this.external_race_url = obj.race.external_race_url;
-  this.logo_url = obj.race.logo_url;    
+  this.logo_url = obj.race.logo_url;
+  this.description = obj.race.description;    
 };
 
 client.connect()
