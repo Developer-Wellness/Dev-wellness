@@ -101,7 +101,7 @@ console.log(SQL, safeValues, '🤯');
             })
 
 
-            response.send(raceEvents);
+            response.redirect('/events');
             // console.log(raceEvents, '💊');
           });
       }
