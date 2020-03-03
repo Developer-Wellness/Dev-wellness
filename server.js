@@ -24,7 +24,7 @@ app.get('/nutrition-and-wellness', renderNutritionAndWellness);
 app.get('/events', renderEvents);
 app.get('/mystuff', renderMystuff);
 app.get('/aboutUs', renderAboutus);
-
+app.get('/search', getRaces);
 const PORT = process.env.PORT || 3001;
 
 
@@ -42,7 +42,18 @@ function renderNutritionAndWellness(request, response) {
 
 function renderEvents(request, response) {
   console.log('trying to render events');
-  response.render('./events');
+  let SQL = 'SELECT * FROM events';
+
+  client.query(SQL)
+    .then(results =>{
+      let eventResults = results.rows;
+      let eventNumbers = eventResults.length;
+      console.log(bookNumber);
+      response.render('./events', {resultsArray: eventResults, eventNumbers});
+    })
+    .catch(error =>{
+      Error(error, response);
+    });
 }
 
 function renderMystuff(request, response) {
@@ -61,21 +72,36 @@ function Error(error, response){
 }
 
 
-app.get('/search', getRaces);
-
 function getRaces(request, response){
   let city = request.query.location;
   console.log(request.query, '💉')
   let url = `https://runsignup.com/Rest/races?format=json&results_per_page=12&city=${city}`;
-  superagent.get(url)
-  .then(results =>{
-    let racesResults = results.race;
-    let raceEvents = racesResults.map((obj) => (new Races(obj)))
-    response.send(raceEvents);
-    console.log(raceEvents, '💊');
-  })
+  let sqlSearch = 'SELECT * FROM events WHERE search_query=$1;';
+  let safeValues = [city];
   
-}
+  client.query(sqlSearch, safeValues)
+  .then(results => {
+    if (results.rowCount > 0) {
+      response.send(results.rows)
+      
+    }else{
+  superagent.get(url)
+    .then(results =>{
+
+      let racesResults = results.race;
+      let raceEvents = racesResults.map((obj) => (new Races(obj)))
+      let { name, next_date, address.city, external_race_url, logo_url } = raceEvents;
+      let safeValues2 = [name, next_date, address.city, external_race_url, logo_url];
+      let SQL = "INSERT INTO events (name, next_date, address.city, external_race_url, logo_url) VALUES ($1, $2, $3, $4, $5) RETURNING *"
+
+      client.query(SQL, safeValues2);
+
+      response.send(raceEvents);
+      console.log(raceEvents, '💊');
+      })
+    }
+  }
+
 
 function Races(obj){
   this.name = obj.name;
@@ -88,20 +114,20 @@ function Races(obj){
 // getRaces()
 
 client.connect()
-.then(()=>{
-app.listen(PORT, () => {
-  console.log(`listening on ${PORT}`);
-});
-});
+  .then(()=>{
+    app.listen(PORT, () => {
+      console.log(`listening on ${PORT}`);
+    });
+  });
 
 
 //  "races": [
-  //         {
-    //             "race": {
-      //                 "race_id": 48851,
-      //                 "name": "2020 Tenacious Ten",
-      //                 "last_date": "04/20/2019",
-      //                 "last_end_date": "04/20/2019",
+//         {
+//             "race": {
+//                 "race_id": 48851,
+//                 "name": "2020 Tenacious Ten",
+//                 "last_date": "04/20/2019",
+//                 "last_end_date": "04/20/2019",
 //                 "next_date": "04/11/2020",
 //                 "next_end_date": "04/11/2020",
 //                 "is_draft_race": "F",

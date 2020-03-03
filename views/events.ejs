@@ -46,11 +46,11 @@
       </fieldset>
     </section>
     <section>
-      <%= for(let x = 0; x < results.length; x++) { %>
+      <%= resultsArray.forEach(element => { { %>
       <article>
           <img src="<%= obj.urlImage %>" alt="<%= obj.name %>">
-          <h6><%= obj.name %></h6>
-          <p><%= obj.descrition %></p>
+          <h6><%= element.name %></h6>
+          <p><%= element.descrition %></p>
           <a action="/favorite:<%= obj.uniqId %>"</a>
         </article>
         <%= } %>
