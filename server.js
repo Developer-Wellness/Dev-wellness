@@ -100,8 +100,8 @@ console.log(SQL, safeValues, '🤯');
             client.query(SQL, safeValues2);
             })
 
-
-            response.redirect('/events');
+            let xyz = raceEvents.length;
+            response.render('./events', { resultsArray: raceEvents, xyz });
             // console.log(raceEvents, '💊');
           });
       }
