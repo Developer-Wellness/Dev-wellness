@@ -16,7 +16,8 @@ CREATE TABLE events(
     location VARCHAR(255),
     date VARCHAR(255),
     logo_url VARCHAR(255),
-    website VARCHAR(255)
+    website VARCHAR(255),
+    completed BOOLEAN
 );
 
 INSERT INTO events (name, description, location, date, logo_url, website) VALUES ('Color run', 'its like a rave, but running', 'Seattle, WA', '12 March 2020', 'Image Goes here', 'website goes here');
