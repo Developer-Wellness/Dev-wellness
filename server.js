@@ -25,8 +25,27 @@ app.get('/events', renderEvents);
 app.get('/mystuff', renderMystuff);
 app.get('/aboutUs', renderAboutus);
 app.get('/search', getRaces);
+app.post('/userName', createUsername);
+
 const PORT = process.env.PORT || 3001;
 
+function createUsername(request, response){
+//check to see if user is in sql db
+//if user is in db, send their id to local storage and refresh homepage 
+//if user is not in db, create user, send this ID to local storage, then refresh homepage 
+//on page load, check local storage to see if user name exists - if user exists, 'welcome username' on homepage
+console.log(request.body);
+let {email, password} = request.body;
+let safeValues = [email, password];
+let sql = 'UPDATE IF EXISTS ELSE INSERT INTO users (name, password) VALUES ($1, $2);';
+client.query(sql, safeValues)
+.then(()=> {
+
+  response.redirect('/', results.id) 
+  
+})
+
+}
 
 function renderHomePage(request, response){
   console.log('hello');

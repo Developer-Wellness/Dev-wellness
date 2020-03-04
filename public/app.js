@@ -36,15 +36,15 @@ var slideIndex = 0;
 		 
 //  });
 
-function showSlides() 
-{ 
-	var i; 
+// function showSlides() 
+// { 
+// 	var i; 
 
-	// get the array of divs' with classname image-sliderfade 
-	let slides = document.getElementsByClassName("image-sliderfade"); 
+// 	// get the array of divs' with classname image-sliderfade 
+// 	let slides = document.getElementsByClassName("image-sliderfade"); 
 	
-	// get the array of divs' with classname dot 
-	let dots = document.getElementsByClassName("dot"); 
+// 	// get the array of divs' with classname dot 
+// 	let dots = document.getElementsByClassName("dot"); 
 
 	// let carousel = $('.image-sliderfade');
 	// carousel.slides({
@@ -56,33 +56,33 @@ function showSlides()
 	// 	autoplayHoverPause:true
 	// });
 
-	for (i = 0; i < slides.length; i++) { 
-		// initially set the display to 
-        // none for every image.
-        console.log(slides); 
-		slides[i].style.display = "none"; 
-	} 
+// 	for (i = 0; i < slides.length; i++) { 
+// 		// initially set the display to 
+//         // none for every image.
+//         console.log(slides); 
+// 		slides[i].style.display = "none"; 
+// 	} 
 
-	// increase by 1, Global variable 
-	slideIndex++; 
+// 	// increase by 1, Global variable 
+// 	slideIndex++; 
 
-	// check for boundary 
-	if (slideIndex > slides.length) 
-	{ 
-		slideIndex = 1; 
-	} 
+// 	// check for boundary 
+// 	if (slideIndex > slides.length) 
+// 	{ 
+// 		slideIndex = 1; 
+// 	} 
 
-	for (i = 0; i < dots.length; i++) { 
-		dots[i].className = dots[i].className. 
-							replace(" active", ""); 
-	} 
+// 	for (i = 0; i < dots.length; i++) { 
+// 		dots[i].className = dots[i].className. 
+// 							replace(" active", ""); 
+// 	} 
 
-	slides[slideIndex - 1].style.display = "block"; 
-	dots[slideIndex - 1].className += " active"; 
+// 	slides[slideIndex - 1].style.display = "block"; 
+// 	dots[slideIndex - 1].className += " active"; 
 
 	
-	// Change image every 2 seconds 
-	setTimeout(showSlides, 2000); 
-} 
+// 	// Change image every 2 seconds 
+// 	setTimeout(showSlides, 2000); 
+// } 
 
 // showSlides();
