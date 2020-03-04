@@ -36,7 +36,8 @@
           <img src="<%= element.logo_url %>" alt="<%= element.name %>">
           <h6><%= element.name %></h6>
           <p><%- element.description %></p>
-          <a action="/favorite:<%= element.uniqId %>"</a>
+          <a href="/favorite:<%= element.id %>">Add to favorites</a>
+          <!-- <a action="/favorite:<%= element.uniqId %>">Add to favorites</a> -->
         </article>
 
         <% }); %>
@@ -51,7 +52,7 @@
       <div id="aboutSue">
         <h3>Sue Tarazi, PT, DPT, OCS, MTC</h3>
         <p>Sue Tarazi is a Physical Therapist who is also an Orthopedics and Manual Specialist in Seattle, WA<br>
-          She has owned her own private practice for over 9 years and has served as faculty at an Acupuncture
+          She ha s owned her own private practice for over 9 years and has served as faculty at an Acupuncture
           school.<br>
           Recently, Sue made a career transition to Software Development and is thrilled to meld her new knowledge with
           her past experience.</p>
