@@ -51,7 +51,8 @@ function createUsername(request, response) {
         client.query(sql2, safeValues2)
           .then(results => {
             console.log('sql2', results);
-            response.render('index', results.rows.id, lastname, firstname)
+            response.render('index', {id: results.rows[0].id, firstname: firstname, lastname: lastname})
+            console.log('sql2', results)
           })
 
             .catch(error => {
