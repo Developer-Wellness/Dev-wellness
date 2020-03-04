@@ -25,15 +25,15 @@
               </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="/userName" method="post">
                     <div class="form-group">
                       <label for="inputEmail">Email address</label>
-                      <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                      <input type="email" name="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
                       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                      <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
                     </div>
                     <!-- <div class="form-check">
                       <input type="checkbox" class="form-check-input" id="check1">
