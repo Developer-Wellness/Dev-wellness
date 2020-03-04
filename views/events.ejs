@@ -33,11 +33,32 @@
     <section>
       <% resultsArray.forEach(element => { %>
       <article>
+        <fieldset>
+          <form action="/favorite/<%= element.name %>?_method=PUT" method="POST">
           <img src="<%= element.logo_url %>" alt="<%= element.name %>">
-          <h6><%= element.name %></h6>
-          <p><%- element.description %></p>
-          <a action="/favorite:<%= element.uniqId %>"</a>
-        </article>
+          <input type="hidden" name="name" value="<%= element.name %>">
+          <input type="hidden" name="next_date" value="<%= element.next_date %>">
+          <input type="hidden" name="location" value="<%= element.location %>">
+          <input type="hidden" name="external_race_url" value="<%= element.external_race_url %>">
+          <input type="hidden" name="logo_url" value="<%= element.logo_url %>">
+          <input type="hidden" name="description" value="<%= element.description %>">
+          <label>   -->
+            <h6 value="<%= element.name %>"><%= element.name %></h6>
+          </label>
+          <!-- <input type="hidden" name="description" value="<%= element.description %>"> -->
+          <input type="hidden" name="completed " value="<%= element.completed %>">
+          <label>
+            <p><%- element.description %></p>
+          </label>
+                    <label>
+                      <h6><% element.next_date %></h6>
+                    </label>
+          <button type="submit">Add to favorites</button>
+          <!-- <a href="/favorite/<%= element.name %>?_method:PUT method='POST'">Add to favorites</a> -->
+          <!-- <a action="/favorite:<%= element.uniqId %>">Add to favorites</a> -->
+          </form>
+        </fieldset>
+        </article> 
 
         <% }); %>
 
@@ -51,7 +72,7 @@
       <div id="aboutSue">
         <h3>Sue Tarazi, PT, DPT, OCS, MTC</h3>
         <p>Sue Tarazi is a Physical Therapist who is also an Orthopedics and Manual Specialist in Seattle, WA<br>
-          She has owned her own private practice for over 9 years and has served as faculty at an Acupuncture
+          She ha s owned her own private practice for over 9 years and has served as faculty at an Acupuncture
           school.<br>
           Recently, Sue made a career transition to Software Development and is thrilled to meld her new knowledge with
           her past experience.</p>
