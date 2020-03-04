@@ -7,28 +7,59 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
         
+        
         <link rel="stylesheet" href="/styles/style.css">
     </head>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Login/Create Username
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create Login</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form action="/userName" method="post">
+                    <div class="form-group">
+                      <label for="inputEmail">First Name</label>
+                      <input type="text" name="firstname" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter name">
+                      <label for="inputEmail">Last Name</label>
+                      <input type="text" name="lastname" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter name">
+                      <small id="emailHelp" class="form-text text-muted">This will allow you to select your favorites on our site.</small>
+                    </div>
+        
+                    <!-- <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="check1">
+                      <label class="form-check-label" for="check1">Check me out</label>
+                    </div> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    
+                    <!-- <button type="button" class="btn btn-primary">Login</button> -->
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
     <body>
         <%- include('./partials/nav') %>
-
-        <!-- <nav>
-        
-        <ul class = "mediaLinks">
-            <li><a href="mailto:suemachtley@gmail.com"><img src="images/mail-icon.png"></a> </li>
-            <li><a href="https://github.com/suetarazi"><img src="images/GitHub-Mark-64px.png"/></a></li>
-            <li><a href="https://www.linkedin.com/in/sue-tarazi-b792b520/"><img src="images/linkedin-logo-png-transparent-background-4.png"/></a></li>
-        </ul> -->
-                
-        <!-- <ul class = "siteNavigation">
-            <li><a href="index.ejs" class="current">Home</a></li>
-            <li><a href="nutrition-and-wellness.ejs">Nutrition and Wellness</a></li>
-            <li><a href="events.ejs">Events</a></li>
-            <li><a href="mystuff.ejs">My Stuff</a></li>
-            <li><a href="aboutUs.ejs">About Us</a></li>
-        </ul> 
-    </nav> -->
-
+        <% if (typeof id !== 'undefined') { %>        
+            <fieldset>
+                <form action="/userName" method="GET">
+                <input type="hidden" id="userId" name="id" value="<%= id %>">
+                </form>
+            </fieldset>
+            <% } %>
+            
+        <br><br><br>
         <header><h1>Developer Wellness</h1></header>
     <main>        
     <article><p>Yes, I see you! You, totally in the zone at your computer. You've been there a while...quite unsure of just how much time has passed! You're turtled over in your chair, chin jutted forward at your screen, shoulders hunched and body slouched, totally unaware of how you're sitting. And you see, after several years of working as Physical Therapist, I can't help but notice the way people sit, stand and move around. I also take in what I hear: several complaints of back pain, neck pain and arm pain. <br><br>
@@ -54,19 +85,8 @@
     </main>
 
     <footer>
-        <section id="footerSue">
-            <div id="aboutSue">
-            <h3>Sue Tarazi, PT, DPT, OCS, MTC</h3>
-            <p>Sue Tarazi is a Physical Therapist who is also an Orthopedics and Manual Specialist in Seattle, WA<br>
-                She has owned her own private practice for over 9 years and has served as faculty at an Acupuncture school.<br>
-                Recently, Sue made a career transition to Software Development and is thrilled to meld her new knowledge with her past experience.</p>
-            </div>    
-            <div class="circular--landscape" id="suePic">
-                <img src = "images/DSC09160.jpg"/>
-                </div>
-        </section>
-            </div>
         </footer>
     </body>
+    <script type="text/javascript" src="scripts/login.js"></script>
     <script src="app.js" async defer></script>
 </html>
