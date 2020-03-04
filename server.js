@@ -25,9 +25,25 @@ app.get('/events', renderEvents);
 app.get('/mystuff', renderMystuff);
 app.get('/aboutUs', renderAboutus);
 app.get('/search', getRaces);
+app.put('/favorite/:event_name', saveOneEvent);
 app.post('/userName', createUsername);
 
 const PORT = process.env.PORT || 3001;
+
+function saveOneEvent(req, res){
+  let eventName = req.params;
+  console.log("/./../.",req.body);
+  console.log("&*&*&&*&", eventName);
+  let { name, next_date, location, external_race_url, logo_url, description, completed } = req.body;
+  let safeValues2 = [name, description, location, next_date, logo_url, external_race_url, completed]; //UUID, LIBRARY; BCRIPT
+  let SQL = 'INSERT INTO events (name, description, location, date, logo_url, website, completed) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;';
+
+              client.query(SQL, safeValues2)
+  res.redirect('/');
+
+}
+
+
 
 function createUsername(request, response){
 //check to see if user is in sql db
@@ -92,23 +108,23 @@ function Error(error, response) {
 
 function getRaces(request, response) {
   let city = request.query.location.toLowerCase();
-  let cityWildCard = "%".concat(city).concat("%");
+  // let cityWildCard = "%".concat(city).concat("%");
   // console.log("/././././", cityWildCard);
   let url = `https://runsignup.com/Rest/races?format=json&results_per_page=12&city=${city}`;
 
-  let sqlSearch = 'SELECT * FROM events WHERE location LIKE $1;';
-  let safeValues = [cityWildCard];//SEARCH BY EVENT NAME, NOT BY LOCATION
+  // let sqlSearch = 'SELECT * FROM events WHERE location LIKE $1;';
+  // let safeValues = [cityWildCard];//SEARCH BY EVENT NAME, NOT BY LOCATION
 
-  client.query(sqlSearch, safeValues)
-    .then(results => {
-      console.log(sqlSearch, safeValues, '✈️');
-      if (results.rowCount > 0) {
-        response.render('./events', { resultsArray: results.rows })
-        // response.send(results.rows)
+  // client.query(sqlSearch, safeValues)
+  //   .then(results => {
+  //     console.log(sqlSearch, safeValues, '✈️');
+  //     if (results.rowCount > 0) {
+  //       response.render('./events', { resultsArray: results.rows })
+  //       // response.send(results.rows)
 
-      } else {
-        console.log("*&*&*&*&*");
-        let eventResults = [];
+  //     } else {
+  //       console.log("*&*&*&*&*");
+  //       let eventResults = [];
         superagent.get(url)
           .then(results => {
 
@@ -116,24 +132,25 @@ function getRaces(request, response) {
             // console.log(racesResults, '🤓');
             let raceEvents = racesResults.map((obj) => (new Races(obj)))
             response.render('./events', { resultsArray: raceEvents });
-            raceEvents.forEach((selectedRace) => {
-              let { name, next_date, location, external_race_url, logo_url, description } = selectedRace;
-              let safeValues2 = [name, description, location, next_date, logo_url, external_race_url]; //UUID, LIBRARY
-              let SQL = 'INSERT INTO events (name, description, location, date, logo_url, website) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;';
+            // raceEvents.forEach((selectedRace) => {
+            //   let { name, next_date, location, external_race_url, logo_url, description } = selectedRace;
+            //   let safeValues2 = [name, description, location, next_date, logo_url, external_race_url]; //UUID, LIBRARY; BCRIPT
+            //   let SQL = 'INSERT INTO events (name, description, location, date, logo_url, website) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;';
 
-              client.query(SQL, safeValues2)
-                .then(results => {
-                  eventResults.push(results.rows[0]);
+            //   client.query(SQL, safeValues2)
+            //     .then(results => {
+            //       eventResults.push(results.rows[0]);
                   // console.log(eventResults, "123459789");
                 })
-            })
+            }
+            // )
 
             // let xyz = raceEvents.length;
-            console.log(eventResults.length, '💊');
-          });
-      }
-    });
-}
+            // console.log(eventResults.length, '💊');
+//           });
+//       }
+//     });
+// }
 
 
 function Races(obj) {
@@ -143,6 +160,7 @@ function Races(obj) {
   this.external_race_url = obj.race.external_race_url || 'unavailable';
   this.logo_url = obj.race.logo_url;
   this.description = obj.race.description;
+  this.completed = false;
 };
 
 client.connect()
