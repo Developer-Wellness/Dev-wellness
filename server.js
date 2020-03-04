@@ -43,20 +43,21 @@ function createUsername(request, response) {
   client.query(sql, safeValues)
     .then((results) => {
       if (results.rows.length > 0) {
-        response.render('index', { id: results.rows[0].id, firstName: results.rows[0].firstname, lastName: results.rows[0].lastname })
+        response.render('index', { id: results.rows[0].id, firstName: results.rows[0].firstname, lastName: results.rows[0].lastname });
       } else {
-        let sql2 = 'INSERT INTO users (firstname, lastname) VALUES ($1, $2) RETURNING id;';
+        let sql2 = 'INSERT INTO users (firstname, lastname) VALUES ($1, $2) RETURNING *;';
         let safeValues2 = [firstname, lastname];
         console.log('safeValues2', safeValues2);
         client.query(sql2, safeValues2)
           .then(results => {
             console.log('sql2', results);
-            response.render('index', results.rows.id, lastname, firstname)
+            response.render('index', { id: results.rows[0].id, firstName: results.rows[0].firstname, lastName: results.rows[0].lastname });
+            console.log('sql2', results)
           })
 
-            .catch(error => {
-              Error(error, response);
-            })
+          .catch(error => {
+            Error(error, response);
+          })
       }
     })
     .catch(error => {
@@ -67,13 +68,13 @@ function createUsername(request, response) {
 
 
 
-function saveOneEvent(req, res){
+function saveOneEvent(req, res) {
   let eventName = req.params;
   let { name, next_date, location, external_race_url, logo_url, description, completed } = req.body;
   let safeValues2 = [name, description, location, next_date, logo_url, external_race_url, completed]; //UUID, LIBRARY; BCRIPT
   let SQL = 'INSERT INTO events (name, description, location, date, logo_url, website, completed) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;';
 
-              client.query(SQL, safeValues2)
+  client.query(SQL, safeValues2)
   // res.redirect('/');
 
 }
@@ -170,28 +171,28 @@ function getRaces(request, response) {
   //     } else {
   //       console.log("*&*&*&*&*");
   //       let eventResults = [];
-        superagent.get(url)
-          .then(results => {
+  superagent.get(url)
+    .then(results => {
 
-            let racesResults = results.body.races;
-            // console.log(racesResults, '🤓');
-            let raceEvents = racesResults.map((obj) => (new Races(obj)))
-            response.render('./events', { resultsArray: raceEvents });
-            // raceEvents.forEach((selectedRace) => {
-            //   let { name, next_date, location, external_race_url, logo_url, description } = selectedRace;
-            //   let safeValues2 = [name, description, location, next_date, logo_url, external_race_url]; //UUID, LIBRARY; BCRIPT
-            //   let SQL = 'INSERT INTO events (name, description, location, date, logo_url, website) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;';
+      let racesResults = results.body.races;
+      // console.log(racesResults, '🤓');
+      let raceEvents = racesResults.map((obj) => (new Races(obj)))
+      response.render('./events', { resultsArray: raceEvents });
+      // raceEvents.forEach((selectedRace) => {
+      //   let { name, next_date, location, external_race_url, logo_url, description } = selectedRace;
+      //   let safeValues2 = [name, description, location, next_date, logo_url, external_race_url]; //UUID, LIBRARY; BCRIPT
+      //   let SQL = 'INSERT INTO events (name, description, location, date, logo_url, website) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;';
 
-            //   client.query(SQL, safeValues2)
-            //     .then(results => {
-            //       eventResults.push(results.rows[0]);
-                  // console.log(eventResults, "123459789");
-                })
-            }
-            // )
+      //   client.query(SQL, safeValues2)
+      //     .then(results => {
+      //       eventResults.push(results.rows[0]);
+      // console.log(eventResults, "123459789");
+    })
+}
+// )
 
-            // let xyz = raceEvents.length;
-            // console.log(eventResults.length, '💊');
+// let xyz = raceEvents.length;
+// console.log(eventResults.length, '💊');
 //           });
 //       }
 //     });

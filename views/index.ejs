@@ -51,7 +51,14 @@
       </div>
     <body>
         <%- include('./partials/nav') %>
-
+        <% if (typeof id !== 'undefined') { %>        
+            <fieldset>
+                <form action="/userName" method="GET">
+                <input type="hidden" id="userId" name="id" value="<%= id %>">
+                </form>
+            </fieldset>
+            <% } %>
+            
         <br><br><br>
         <header><h1>Developer Wellness</h1></header>
     <main>        
@@ -80,5 +87,6 @@
     <footer>
         </footer>
     </body>
+    <script type="text/javascript" src="scripts/login.js"></script>
     <script src="app.js" async defer></script>
 </html>
