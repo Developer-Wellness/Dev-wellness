@@ -30,6 +30,43 @@ app.post('/userName', createUsername);
 
 const PORT = process.env.PORT || 3001;
 
+
+function createUsername(request, response) {
+  //check to see if user is in sql db
+  //if user is in db, send their id to local storage and refresh homepage 
+  //if user is not in db, create user, send this ID to local storage, then refresh homepage 
+  //on page load, check local storage to see if user name exists - if user exists, 'welcome username' on homepage
+  let { firstname, lastname } = request.body;
+  let safeValues = [firstname, lastname];
+  let sql = 'SELECT * FROM users WHERE firstname = $1 and lastname = $2;';
+  client.query(sql, safeValues)
+    .then((results) => {
+      // console.log('🎅', results.rows);
+      if (results.rows.length > 0) {
+        response.render('index', { id: results.rows[0].id, firstName: results.rows[0].firstname, lastName: results.rows[0].lastname })
+      } else {
+        let sql2 = 'INSERT INTO users (firstname, lastname) VALUES ($1, $2) RETURNING id;';
+        let safeValues2 = [firstname, lastname];
+        console.log('safeValues2', safeValues2);
+        client.query(sql2, safeValues2)
+          .then(results => {
+            console.log('sql2', results);
+            response.render('index', results.rows.id, lastname, firstname)
+          })
+
+            .catch(error => {
+              Error(error, response);
+            })
+      }
+    })
+    .catch(error => {
+      Error(error, response);
+    })
+
+}
+
+
+
 function saveOneEvent(req, res){
   let eventName = req.params;
   console.log("/./../.",req.body);
@@ -43,25 +80,6 @@ function saveOneEvent(req, res){
 
 }
 
-
-
-function createUsername(request, response){
-//check to see if user is in sql db
-//if user is in db, send their id to local storage and refresh homepage 
-//if user is not in db, create user, send this ID to local storage, then refresh homepage 
-//on page load, check local storage to see if user name exists - if user exists, 'welcome username' on homepage
-console.log(request.body);
-let {email, password} = request.body;
-let safeValues = [email, password];
-let sql = 'UPDATE IF EXISTS ELSE INSERT INTO users (name, password) VALUES ($1, $2);';
-client.query(sql, safeValues)
-.then(()=> {
-
-  response.redirect('/', results.id) 
-  
-})
-
-}
 
 function renderHomePage(request, response) {
   console.log('hello');
@@ -107,6 +125,7 @@ function Error(error, response) {
 
 
 function getRaces(request, response) {
+
   let city = request.query.location.toLowerCase();
   // let cityWildCard = "%".concat(city).concat("%");
   // console.log("/././././", cityWildCard);
@@ -114,7 +133,6 @@ function getRaces(request, response) {
 
   // let sqlSearch = 'SELECT * FROM events WHERE location LIKE $1;';
   // let safeValues = [cityWildCard];//SEARCH BY EVENT NAME, NOT BY LOCATION
-
   // client.query(sqlSearch, safeValues)
   //   .then(results => {
   //     console.log(sqlSearch, safeValues, '✈️');

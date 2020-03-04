@@ -2,11 +2,11 @@ DROP TABLE IF EXISTS users, events, userevents;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
-    password VARCHAR(255)
+    firstname VARCHAR(255),
+    lastname VARCHAR(255)
 );
 
-INSERT INTO users (name, password) VALUES ('Sean', '12345');
+INSERT INTO users (firstname, lastname) VALUES ('Sean', 'Landers');
 
 
 CREATE TABLE events(
