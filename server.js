@@ -27,6 +27,7 @@ app.get('/aboutUs', renderAboutus);
 app.get('/search', getRaces);
 app.put('/favorite/:event_name', saveOneEvent);
 app.post('/userName', createUsername);
+app.delete('/favorite/:event_id', deleteOneEvent);
 
 const PORT = process.env.PORT || 3001;
 
@@ -41,7 +42,6 @@ function createUsername(request, response) {
   let sql = 'SELECT * FROM users WHERE firstname = $1 and lastname = $2;';
   client.query(sql, safeValues)
     .then((results) => {
-      // console.log('🎅', results.rows);
       if (results.rows.length > 0) {
         response.render('index', { id: results.rows[0].id, firstName: results.rows[0].firstname, lastName: results.rows[0].lastname })
       } else {
@@ -69,8 +69,6 @@ function createUsername(request, response) {
 
 function saveOneEvent(req, res){
   let eventName = req.params;
-  console.log("/./../.",req.body);
-  console.log("&*&*&&*&", eventName);
   let { name, next_date, location, external_race_url, logo_url, description, completed } = req.body;
   let safeValues2 = [name, description, location, next_date, logo_url, external_race_url, completed]; //UUID, LIBRARY; BCRIPT
   let SQL = 'INSERT INTO events (name, description, location, date, logo_url, website, completed) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;';
@@ -79,6 +77,24 @@ function saveOneEvent(req, res){
   // res.redirect('/');
 
 }
+
+function deleteOneEvent(request, response){
+    let eventId = request.params.event_id
+    let SQL = 'DELETE FROM events WHERE id=$1'
+    let safeValues = [eventId];
+
+    client.query(SQL, safeValues);
+    response.redirect('/mystuff');
+}
+
+// function updateOneEvent(request, response){
+//     let eventId = request.params.event_id
+//     let SQL = 'DELETE FROM events WHERE id=$1'
+//     let safeValues = [eventId];
+
+//     client.query(SQL, safeValues);
+//     response.redirect('/mystuff');
+// }
 
 
 function renderHomePage(request, response) {
@@ -95,22 +111,33 @@ function renderNutritionAndWellness(request, response) {
 
 function renderEvents(request, response) {
   console.log('trying to render events');
-  let SQL = 'SELECT * FROM events';
+//   let SQL = 'SELECT * FROM events';
+    // response.render('./events, []);
+//   client.query(SQL)
+//     .then(results => {
+      let eventResults = [];
+    //   let eventNumbers = eventResults.length;
+      response.render('./events', { resultsArray: eventResults});
+    // })
+    // .catch(error => {
+    //   Error(error, response);
+    // });
+}
+
+function renderMystuff(request, response) {
+//   console.log('trying to render mystuff');
+//   response.render('./mystuff');
+   let SQL = 'SELECT * FROM events';
 
   client.query(SQL)
     .then(results => {
       let eventResults = results.rows;
       let eventNumbers = eventResults.length;
-      response.render('./events', { resultsArray: eventResults, eventNumbers });
+      response.render('./mystuff', { resultsArray: eventResults, eventNumbers });
     })
     .catch(error => {
       Error(error, response);
     });
-}
-
-function renderMystuff(request, response) {
-  console.log('trying to render mystuff');
-  response.render('./mystuff');
 }
 
 function renderAboutus(request, response) {
