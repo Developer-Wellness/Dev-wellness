@@ -33,12 +33,32 @@
     <section>
       <% resultsArray.forEach(element => { %>
       <article>
+        <fieldset>
+          <form action="/favorite/<%= element.name %>?_method=PUT" method="POST">
           <img src="<%= element.logo_url %>" alt="<%= element.name %>">
-          <h6><%= element.name %></h6>
-          <p><%- element.description %></p>
-          <a href="/favorite:<%= element.id %>">Add to favorites</a>
+          <input type="hidden" name="name" value="<%= element.name %>">
+          <input type="hidden" name="next_date" value="<%= element.next_date %>">
+          <input type="hidden" name="location" value="<%= element.location %>">
+          <input type="hidden" name="external_race_url" value="<%= element.external_race_url %>">
+          <input type="hidden" name="logo_url" value="<%= element.logo_url %>">
+          <input type="hidden" name="description" value="<%= element.description %>">
+          <label>   -->
+            <h6 value="<%= element.name %>"><%= element.name %></h6>
+          </label>
+          <!-- <input type="hidden" name="description" value="<%= element.description %>"> -->
+          <input type="hidden" name="completed " value="<%= element.completed %>">
+          <label>
+            <p><%- element.description %></p>
+          </label>
+                    <label>
+                      <h6><% element.next_date %></h6>
+                    </label>
+          <button type="submit">Add to favorites</button>
+          <!-- <a href="/favorite/<%= element.name %>?_method:PUT method='POST'">Add to favorites</a> -->
           <!-- <a action="/favorite:<%= element.uniqId %>">Add to favorites</a> -->
-        </article>
+          </form>
+        </fieldset>
+        </article> 
 
         <% }); %>
 
