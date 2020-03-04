@@ -76,7 +76,7 @@ function saveOneEvent(req, res){
   let SQL = 'INSERT INTO events (name, description, location, date, logo_url, website, completed) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;';
 
               client.query(SQL, safeValues2)
-  res.redirect('/');
+  // res.redirect('/');
 
 }
 
