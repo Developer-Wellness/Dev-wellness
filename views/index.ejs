@@ -51,7 +51,16 @@
       </div>
     <body>
         <%- include('./partials/nav') %>
-
+        <% if (typeof id == 'num' && id) { %>        
+            <fieldset>
+                <form action="/userName" method="GET">
+                <input type="hidden" id="userId" name="id" value="<%= id %>">
+                <input type="hidden" id="lastname" name="lastname" value="<%= lastname %>">
+                <input type="hidden" id="firstname" name="firstname" value="<%= firstname %>">
+                </form>
+            </fieldset>
+            <% } %>
+            
         <br><br><br>
         <header><h1>Developer Wellness</h1></header>
     <main>        
