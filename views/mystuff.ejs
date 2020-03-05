@@ -3,6 +3,7 @@
 <body>
 <header>
     <h1>My Stuff</h1>
+    <link rel="stylesheet" href="/styles/modules.css">
   </header>
     <main>
       <br>
@@ -10,7 +11,7 @@
       <% resultsArray.forEach(element => { %>
         <article>
           <fieldset>
-            <form action="/favorite/<%= element.id %>?_method=DELETE" method="POST">
+            <form class="<%- element.completed %>" action="/favorite/<%= element.id %>?_method=DELETE" method="POST">
               <img src="<%= element.logo_url %>" alt="<%= element.name %>">
               <input type="hidden" name="name" value="<%= element.name %>">
               <input type="hidden" name="next_date" value="<%= element.next_date %>">
@@ -26,18 +27,17 @@
               <label>
                 <p><%- element.description %></p>
               </label>
-              <label>
+              
                 <h6><% element.next_date %></h6>
-                <button type="submit">Delete</button>
+                <button type="submit" class="btn btn-outline-danger">Delete</button>
+            </br>
+
                 
                 <!-- <a href="/favorite/<%= element.name %>?_method:PUT method='POST'">Add to favorites</a> -->
                 <!-- <a action="/favorite:<%= element.uniqId %>">Add to favorites</a> -->
               </form>
-              <form action="/favorite/<%= element.id %>?_method=PUT" method="POST">
-              </label>
-              <label for='completed'>Completed
-              </label>
-            <input type="checkbox" name="completed" value="<%- element.completed %>""  >
+              <form class="<%- element.completed %>" action="/updateFavorite/<%= element.id %>?_method=PUT" method="POST">
+              <button type="submit" class="btn btn-outline-primary" name="completed" value="<%- element.completed %>">Race Completed!</button>
             </form>
           </fieldset>
         </article> 

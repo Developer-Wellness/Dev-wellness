@@ -28,7 +28,7 @@ app.get('/search', getRaces);
 app.put('/favorite/:event_name', saveOneEvent);
 app.post('/userName', createUsername);
 app.delete('/favorite/:event_id', deleteOneEvent);
-app.put('/favorite/:completed', updateOneEvent);
+app.put('/updateFavorite/:completed', updateOneEvent);
 
 const PORT = process.env.PORT || 3001;
 
@@ -58,15 +58,14 @@ function createUsername(request, response) {
 
           .catch(error => {
             Error(error, response);
-          })
+          });
       }
     })
     .catch(error => {
       Error(error, response);
-    })
+    });
 
 }
-
 
 
 function saveOneEvent(req, res) {
@@ -81,23 +80,23 @@ function saveOneEvent(req, res) {
 }
 
 function deleteOneEvent(request, response){
-    let eventId = request.params.event_id
-    let SQL = 'DELETE FROM events WHERE id=$1'
-    let safeValues = [eventId];
+  let eventId = request.params.event_id
+  let SQL = 'DELETE FROM events WHERE id=$1'
+  let safeValues = [eventId];
 
-    client.query(SQL, safeValues);
-    response.redirect('/mystuff');
+  client.query(SQL, safeValues);
+  response.redirect('/mystuff');
 }
 
 
 
 function updateOneEvent(request, response){
-    let eventId = request.params.completed
-    let SQL = 'UPDATE events SET completed = NOT completed id=$1'
-    let safeValues = [eventId];
-console.log('🏵', request.params.completed);
-    client.query(SQL, safeValues);
-    response.redirect('/mystuff');
+  let eventId = request.params.completed;
+  let SQL = 'UPDATE events SET completed=$1 WHERE id=$2;';
+  let safeValues = [true, eventId];
+  
+  client.query(SQL, safeValues);
+  response.redirect('/mystuff');
 
 }
 
@@ -116,23 +115,13 @@ function renderNutritionAndWellness(request, response) {
 
 function renderEvents(request, response) {
   console.log('trying to render events');
-//   let SQL = 'SELECT * FROM events';
-    // response.render('./events, []);
-//   client.query(SQL)
-//     .then(results => {
-      let eventResults = [];
-    //   let eventNumbers = eventResults.length;
-      response.render('./events', { resultsArray: eventResults});
-    // })
-    // .catch(error => {
-    //   Error(error, response);
-    // });
+  let eventResults = [];
+  response.render('./events', { resultsArray: eventResults});
+
 }
 
 function renderMystuff(request, response) {
-//   console.log('trying to render mystuff');
-//   response.render('./mystuff');
-   let SQL = 'SELECT * FROM events';
+  let SQL = 'SELECT * FROM events';
 
   client.query(SQL)
     .then(results => {
@@ -159,48 +148,17 @@ function Error(error, response) {
 function getRaces(request, response) {
 
   let city = request.query.location.toLowerCase();
-  // let cityWildCard = "%".concat(city).concat("%");
-  // console.log("/././././", cityWildCard);
   let url = `https://runsignup.com/Rest/races?format=json&results_per_page=12&city=${city}`;
 
-  // let sqlSearch = 'SELECT * FROM events WHERE location LIKE $1;';
-  // let safeValues = [cityWildCard];//SEARCH BY EVENT NAME, NOT BY LOCATION
-  // client.query(sqlSearch, safeValues)
-  //   .then(results => {
-  //     console.log(sqlSearch, safeValues, '✈️');
-  //     if (results.rowCount > 0) {
-  //       response.render('./events', { resultsArray: results.rows })
-  //       // response.send(results.rows)
-
-  //     } else {
-  //       console.log("*&*&*&*&*");
-  //       let eventResults = [];
   superagent.get(url)
     .then(results => {
 
       let racesResults = results.body.races;
-      // console.log(racesResults, '🤓');
       let raceEvents = racesResults.map((obj) => (new Races(obj)))
       response.render('./events', { resultsArray: raceEvents });
-      // raceEvents.forEach((selectedRace) => {
-      //   let { name, next_date, location, external_race_url, logo_url, description } = selectedRace;
-      //   let safeValues2 = [name, description, location, next_date, logo_url, external_race_url]; //UUID, LIBRARY; BCRIPT
-      //   let SQL = 'INSERT INTO events (name, description, location, date, logo_url, website) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;';
-
-      //   client.query(SQL, safeValues2)
-      //     .then(results => {
-      //       eventResults.push(results.rows[0]);
-      // console.log(eventResults, "123459789");
-    })
+    });
 }
-// )
 
-// let xyz = raceEvents.length;
-// console.log(eventResults.length, '💊');
-//           });
-//       }
-//     });
-// }
 let locationSearch = '';
 
 function Races(obj) {
