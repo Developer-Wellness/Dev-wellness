@@ -1,0 +1,36 @@
+header, section, footer, nav, article, figure, figcaption {
+    display: block;
+}
+
+body {
+    width: 960px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* text-align: center; */
+    background-color: #78A4BF;
+    color: #1B2F32;
+    margin: auto;
+    box-sizing: border-box;
+    
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 480px) 
+{ 
+body {
+  width: 100vw;
+  box-sizing: border-box;  
+  margin: 0 auto;
+  position: center;  
+}
+
+#herbSection {
+ display: flex;
+ flex-direction: column;  
+}
+
+#herbSection .herbs{
+  text-align: center;
+  margin-left: 40px;
+  margin-right: 0px;  
+}
+}
