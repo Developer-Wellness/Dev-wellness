@@ -19,17 +19,17 @@
   </header>
   <main>
     <section>
-      <fieldset>
+      <fieldset id="searchCity">
         <form action="/search" method="get"/><!--sending user input as /search query-->
           <label>
             <h3>Input City Location</h3>
           </label>
           <input type="text" id="city" name="location">
-          <button id="getCity" type="submit"></button>
+          <button id="getCity" type="submit">Submit</button>
         </form>
       </fieldset>
     </section>
-
+<br><br>
     <section>
       <% if (resultsArray.length > 0){ %>
 
@@ -56,7 +56,8 @@
                         <h6><% element.next_date %></h6>
                       </label>
             <button type="submit" class="btn btn-lg btn-danger" data-toggle="popover" data-content="Added to Favorites!" data-delay: { "show": 500, "hide": 100 }>Add to Favorites</button>
-            
+            <br><br><br>
+            <div id="linebreak"></div>
             <!-- <a href="/favorite/<%= element.name %>?_method:PUT method='POST'">Add to favorites</a> -->
             <!-- <a action="/favorite:<%= element.uniqId %>">Add to favorites</a> -->
             </form>
