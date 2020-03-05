@@ -12,3 +12,10 @@ function checkUser(){
   }
 }
 $('#userId').on('change', checkUser());
+
+
+function logOut(){
+  localStorage.clear();
+};
+
+$('#logout').on('click', logOut);
