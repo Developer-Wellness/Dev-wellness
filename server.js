@@ -146,9 +146,9 @@ function Error(error, response) {
 
 
 function getRaces(request, response) {
-
+  let type = request.query.selectEventType;
   let city = request.query.location.toLowerCase();
-  let url = `https://runsignup.com/Rest/races?format=json&results_per_page=12&city=${city}`;
+  let url = `https://runsignup.com/Rest/races?format=json&results_per_page=12&city=${city}&event_type=${type}`;;
 
   superagent.get(url)
     .then(results => {
