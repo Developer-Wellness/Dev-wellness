@@ -7,6 +7,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -53,7 +54,9 @@
               <p><%- element.description %></p>
             </label>
                       <label>
-                        <h6><% element.next_date %></h6>
+
+                        <h6><%= element.next_date %></h6>
+
                       </label>
             <button type="submit" class="btn btn-lg btn-danger" data-toggle="popover" data-content="Added to Favorites!" data-delay: { "show": 500, "hide": 100 }>Add to Favorites</button>
             <br><br><br>

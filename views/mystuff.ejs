@@ -14,7 +14,7 @@
             <form class="<%- element.completed %>" action="/favorite/<%= element.id %>?_method=DELETE" method="POST">
               <img src="<%= element.logo_url %>" alt="<%= element.name %>">
               <input type="hidden" name="name" value="<%= element.name %>">
-              <input type="hidden" name="next_date" value="<%= element.next_date %>">
+              <input type="hidden" name="next_date" value="<%= element.date %>">
               <input type="hidden" name="location" value="<%= element.location %>">
               <input type="hidden" name="external_race_url" value="<%= element.external_race_url %>">
               <input type="hidden" name="logo_url" value="<%= element.logo_url %>">
@@ -27,17 +27,17 @@
               <label>
                 <p><%- element.description %></p>
               </label>
-              
-                <h6><% element.next_date %></h6>
+
+                <h6><%- element.date %></h6>
                 <button type="submit" class="btn btn-outline-danger">Delete</button>
             </br>
 
-                
                 <!-- <a href="/favorite/<%= element.name %>?_method:PUT method='POST'">Add to favorites</a> -->
                 <!-- <a action="/favorite:<%= element.uniqId %>">Add to favorites</a> -->
               </form>
               <form class="<%- element.completed %>" action="/updateFavorite/<%= element.id %>?_method=PUT" method="POST">
-              <button type="submit" class="btn btn-outline-primary" name="completed" value="<%- element.completed %>">Race Completed!</button>
+                <button type="submit" class="btn btn-outline-primary" name="completed" value="<%- element.completed %>">Race Completed!</button> <button type="submit" class="btn btn-outline-danger">Delete</button>
+              <br><br><br><br>
             </form>
           </fieldset>
         </article> 
