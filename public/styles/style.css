@@ -16,47 +16,11 @@ header {
     height: 120px; 
 }
 
-
 nav {
     width: 1000px;
     background-color: #324873; 
     height: 60px;
     margin: 0px;
-}
-
-nav ul{
-    margin: 0px;
-    padding: 10px 0px 10px 30px;
-}
-
-.siteNavigation li {
-  margin-bottom: 50px; 
-}
-
-nav .siteNavigation li{
-    display: inline;
-    margin-right: 50px;
-    
-}
-
-nav .mediaLinks li{
-    display: inline;
-    margin-right: 20px;
-    text-decoration: none;
-    float: right;
-}
-
-nav li a{
-    color: #99BFB4;
-}
-
-nav li a:hover, nav li {
-    color: whitesmoke;
-}
-
-nav .mediaLinks li img{
-    width: 24px;
-    height: 24px;
 }
 
 h1 {
@@ -100,10 +64,6 @@ h2, h3 {
     float: right;
   }
 
-  /* div {
-      background-color: aqua;
-      margin-bottom: 50px;
-  } */
 
 #inflammatoryFoods {
     display: inline; 
@@ -147,19 +107,6 @@ h2, h3 {
     text-align: center;
     
   }
-
-  #suePic {
-    width: 150px;
-    height: 150px;
-    margin-right: 20px;
-    margin-bottom: 200px;
-    float: right;
-}
-
-    /* footer div{
-    display: inline-block; 
-    height: 200px; 
-  } */
   
   footer{
       width: 1000px;
@@ -172,17 +119,7 @@ h2, h3 {
       line-height: 60px;
     }
 
-  #aboutSue{
-    display: block;
-    width: 800px; 
-    margin-top: 20px; 
-    margin-left: 20px; 
-  }
-
-
-  /* Hamburger Nav CSS: */
-  /* Icon 1 */
-
+/* CSS for Hamburger Nav */
 .animated-icon1, .animated-icon2, .animated-icon3 {
   width: 30px;
   height: 20px;
