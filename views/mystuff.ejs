@@ -28,11 +28,16 @@
               </label>
               <label>
                 <h6><% element.next_date %></h6>
+                <button type="submit">Delete</button>
+                
+                <!-- <a href="/favorite/<%= element.name %>?_method:PUT method='POST'">Add to favorites</a> -->
+                <!-- <a action="/favorite:<%= element.uniqId %>">Add to favorites</a> -->
+              </form>
+              <form action="/favorite/<%= element.id %>?_method=PUT" method="POST">
               </label>
-              <button type="submit">Delete</button>
-              
-              <!-- <a href="/favorite/<%= element.name %>?_method:PUT method='POST'">Add to favorites</a> -->
-              <!-- <a action="/favorite:<%= element.uniqId %>">Add to favorites</a> -->
+              <label for='completed'>Completed
+              </label>
+            <input type="checkbox" name="completed" value="<%- element.completed %>""  >
             </form>
           </fieldset>
         </article> 

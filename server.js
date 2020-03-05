@@ -28,6 +28,7 @@ app.get('/search', getRaces);
 app.put('/favorite/:event_name', saveOneEvent);
 app.post('/userName', createUsername);
 app.delete('/favorite/:event_id', deleteOneEvent);
+app.put('/favorite/:completed', updateOneEvent);
 
 const PORT = process.env.PORT || 3001;
 
@@ -75,7 +76,7 @@ function saveOneEvent(req, res) {
   let SQL = 'INSERT INTO events (name, description, location, date, logo_url, website, completed) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;';
 
   client.query(SQL, safeValues2)
-  // res.redirect('/');
+  res.redirect(`/search?location=${locationSearch}`);
 
 }
 
@@ -88,14 +89,17 @@ function deleteOneEvent(request, response){
     response.redirect('/mystuff');
 }
 
-// function updateOneEvent(request, response){
-//     let eventId = request.params.event_id
-//     let SQL = 'DELETE FROM events WHERE id=$1'
-//     let safeValues = [eventId];
 
-//     client.query(SQL, safeValues);
-//     response.redirect('/mystuff');
-// }
+
+function updateOneEvent(request, response){
+    let eventId = request.params.completed
+    let SQL = 'UPDATE events SET completed = NOT completed id=$1'
+    let safeValues = [eventId];
+console.log('🏵', request.params.completed);
+    client.query(SQL, safeValues);
+    response.redirect('/mystuff');
+
+}
 
 
 function renderHomePage(request, response) {
@@ -197,16 +201,17 @@ function getRaces(request, response) {
 //       }
 //     });
 // }
-
+let locationSearch = '';
 
 function Races(obj) {
-  this.name = obj.race.name;
+  this.name =  obj.race.name;
   this.next_date = obj.race.next_date;
   this.location = obj.race.address.city.toLowerCase() || 'undefined';
   this.external_race_url = obj.race.external_race_url || 'unavailable';
   this.logo_url = obj.race.logo_url;
   this.description = obj.race.description;
   this.completed = false;
+  locationSearch = this.location;
 };
 
 client.connect()
