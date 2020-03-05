@@ -163,12 +163,14 @@ h2, h3 {
   
   footer{
       width: 1000px;
-      height: 200px;
+      height: 60px;
       margin: 15px;
       background-color: #324873; 
-      color: #99BFB4;
+      color: #99BFB4; 
       margin-left: 20px;
-  }
+      text-align: center;
+      line-height: 60px;
+    }
 
   #aboutSue{
     display: block;
@@ -442,3 +444,7 @@ to {opacity: 1}
 { 
 .text {font-size: 11px} 
 }  */
+
+.d-block w-100 {
+  width: 10%;
+}
