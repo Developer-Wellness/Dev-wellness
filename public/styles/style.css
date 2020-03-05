@@ -9,54 +9,26 @@ body {
     background-color: #78A4BF;
     color: #1B2F32;
     margin: auto;
+    box-sizing: border-box;
     
+}
+
+#hero {
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; 
 }
 
 header {
     height: 120px; 
 }
 
-
 nav {
-    width: 1000px;
+    width: 100%;
     background-color: #324873; 
     height: 60px;
     margin: 0px;
-}
-
-nav ul{
-    margin: 0px;
-    padding: 10px 0px 10px 30px;
-}
-
-.siteNavigation li {
-  margin-bottom: 50px; 
-}
-
-nav .siteNavigation li{
-    display: inline;
-    margin-right: 50px;
-    
-}
-
-nav .mediaLinks li{
-    display: inline;
-    margin-right: 20px;
-    text-decoration: none;
-    float: right;
-}
-
-nav li a{
-    color: #99BFB4;
-}
-
-nav li a:hover, nav li {
-    color: whitesmoke;
-}
-
-nav .mediaLinks li img{
-    width: 24px;
-    height: 24px;
 }
 
 h1 {
@@ -67,6 +39,21 @@ h1 {
 h2, h3 {
     text-align: center;
 }
+
+h6 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 20px; 
+  margin-left: 10px;
+  font-weight: bold;
+  color: #1B2F32;   
+  
+}
+
+#herbSection {
+  display: grid;
+
+}
+
 
 .video {
   text-align: center;
@@ -87,7 +74,7 @@ h2, h3 {
   .circular--landscape img {
     width: auto;
     height: 100%;
-    margin-left: -50px;
+    margin-left: 0px;
     
   }
 
@@ -100,10 +87,6 @@ h2, h3 {
     float: right;
   }
 
-  /* div {
-      background-color: aqua;
-      margin-bottom: 50px;
-  } */
 
 #inflammatoryFoods {
     display: inline; 
@@ -123,7 +106,7 @@ h2, h3 {
   .circular--landscape2 img {
     width: auto;
     height: 100%;
-    margin-left: -50px;
+    margin-left: 0px;
     
   }
 
@@ -142,45 +125,25 @@ h2, h3 {
 
   .circular--landscape3 img {
     width: auto;
+    display: inline-block; 
     height: 100%;
     margin-left: -58px;
     text-align: center;
     
   }
-
-  #suePic {
-    width: 150px;
-    height: 150px;
-    margin-right: 20px;
-    margin-bottom: 200px;
-    float: right;
-}
-
-    /* footer div{
-    display: inline-block; 
-    height: 200px; 
-  } */
   
   footer{
-      width: 1000px;
-      height: 200px;
-      margin: 15px;
+      width: 100%;
+      height: 60px;
+      margin: 0px;
       background-color: #324873; 
-      color: #99BFB4;
-      margin-left: 20px;
-  }
+      color: #99BFB4; 
+      margin-left: 0px;
+      text-align: center;
+      line-height: 60px;
+    }
 
-  #aboutSue{
-    display: block;
-    width: 800px; 
-    margin-top: 20px; 
-    margin-left: 20px; 
-  }
-
-
-  /* Hamburger Nav CSS: */
-  /* Icon 1 */
-
+/* CSS for Hamburger Nav */
 .animated-icon1, .animated-icon2, .animated-icon3 {
   width: 30px;
   height: 20px;
@@ -437,8 +400,57 @@ from {opacity: .4}
 to {opacity: 1} 
 } 
 
+#searchCity {
+  display: block;
+  text-align: center; 
+}
+
+#linebreak{
+  break-after: always;
+   
+}
+
+a.nav-link{
+  text-align: right; 
+}
+
+.carousel {
+  width: 400px;
+  height: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.carousel-item {
+  height: 400px;
+  width: 400px;
+}
+
 /* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) 
+@media only screen and (max-width: 480px) 
 { 
+body {
+  width: 100vw;
+  box-sizing: border-box;  
+  margin: 0 auto;
+  position: center;  
+}
+
+#herbSection {
+ display: flex;
+ flex-direction: column;  
+}
+
+#herbSection .herbs{
+  text-align: center;
+  margin-left: 40px;
+  margin-right: 0px;  
+}
+
+} 
 .text {font-size: 11px} 
-}  */
+
+.d-block w-100 {
+  width: 10%;
+}
