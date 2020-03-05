@@ -125,6 +125,7 @@ h6 {
 
   .circular--landscape3 img {
     width: auto;
+    display: inline-block; 
     height: 100%;
     margin-left: -58px;
     text-align: center;
@@ -132,12 +133,12 @@ h6 {
   }
   
   footer{
-      width: 1000px;
+      width: 100%;
       height: 60px;
-      margin: 15px;
+      margin: 0px;
       background-color: #324873; 
       color: #99BFB4; 
-      margin-left: 20px;
+      margin-left: 0px;
       text-align: center;
       line-height: 60px;
     }
@@ -430,13 +431,25 @@ a.nav-link{
 @media only screen and (max-width: 480px) 
 { 
 body {
-  width: 480px;
+  width: 100vw;
   box-sizing: border-box;  
-  margin: 0 auto; 
+  margin: 0 auto;
+  position: center;  
 }
 
-.text {font-size: 11px} 
+#herbSection {
+ display: flex;
+ flex-direction: column;  
+}
+
+#herbSection .herbs{
+  text-align: center;
+  margin-left: 40px;
+  margin-right: 0px;  
+}
+
 } 
+.text {font-size: 11px} 
 
 .d-block w-100 {
   width: 10%;
