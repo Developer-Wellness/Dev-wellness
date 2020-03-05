@@ -6,7 +6,7 @@ CREATE TABLE users(
     lastname VARCHAR(255)
 );
 
-INSERT INTO users (firstname, lastname) VALUES ('Sean', 'Landers');
+--INSERT INTO users (firstname, lastname) VALUES ('Sean', 'Landers');
 
 
 CREATE TABLE events(
@@ -20,7 +20,7 @@ CREATE TABLE events(
     completed BOOLEAN
 );
 
-INSERT INTO events (name, description, location, date, logo_url, website) VALUES ('Color run', 'its like a rave, but running', 'Seattle, WA', '12 March 2020', 'Image Goes here', 'website goes here');
+--INSERT INTO events (name, description, location, date, logo_url, website) VALUES ('Color run', 'its like a rave, but running', 'Seattle, WA', '12 March 2020', 'Image Goes here', 'website goes here');
 
 CREATE TABLE userevents (
     id SERIAL PRIMARY KEY,
