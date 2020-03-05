@@ -27,7 +27,11 @@
               <label>
                 <p><%- element.description %></p>
               </label>
-                <h6><%= element.date %></h6>
+
+                <h6><%- element.date %></h6>
+                <button type="submit" class="btn btn-outline-danger">Delete</button>
+            </br>
+
                 <!-- <a href="/favorite/<%= element.name %>?_method:PUT method='POST'">Add to favorites</a> -->
                 <!-- <a action="/favorite:<%= element.uniqId %>">Add to favorites</a> -->
               </form>
